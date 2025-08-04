@@ -1,7 +1,7 @@
 // const BASE_URL = "https://studywithmentor.onrender.com/api/v1"
 // const BASE_URL = "http://localhost:4000/api/v1";
 // The corrected code
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://study-verse-backend.vercel.app/api/v1";
 
 
 // AUTH ENDPOINTS
