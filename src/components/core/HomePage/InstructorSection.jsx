@@ -22,7 +22,7 @@ const InstructorSection = () => {
                         <HighLightText text={"Instructor"} />
                     </div>
                     <p className='font-medium text-[16px] w-[80%] text-richblack-300'>
-                        Instructor form around the world teach millions of StudyNotion. We provide the tools and skills to teach what you love.
+                        Instructor form around the world teach millions of StudyVerse. We provide the tools and skills to teach what you love.
                     </p>
 
                     <div className='w-fit'>
