@@ -132,67 +132,146 @@ const ReviewSlider = () => {
     }
 
     return (
-        <div className='text-white py-8'>
-            <div className='mySwiper h-[190px] max-w-maxContent'>
-                <Swiper
-                    slidesPerView={1} // Default for smallest screens
-                    spaceBetween={24}
-                    loop={true}
-                    freeMode={true}
-                    autoplay={{
-                        delay: 2500,
-                        disableOnInteraction: false,
-                    }}
-                    modules={[FreeMode, Pagination, Autoplay]}
-                    className='w-full'
-                    breakpoints={{
-                        640: { // Screen width >= 640px (sm)
-                            slidesPerView: 2,
-                        },
-                        1024: { // Screen width >= 1024px (lg)
-                            slidesPerView: 4,
-                        },
-                    }}
-                >
-                    {reviews.map((review) => (
-                        <SwiperSlide key={review._id} className="bg-richblack-800 p-4 rounded-lg flex flex-col gap-3">
-                            <div className='flex items-center gap-4'>
-                                <img
-                                    src={review?.user?.image ? review.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName} ${review?.user?.lastName}`}
-                                    alt='Profile pic'
-                                    className='h-9 w-9 object-cover rounded-full'
-                                />
-                                <div className='flex flex-col'>
-                                    {/* FIX: Accessing user's name */}
-                                    <p className='font-semibold'>{review?.user?.firstName} {review?.user?.lastName}</p>
-                                    <p className='text-sm text-richblack-300'>{review?.course?.courseName}</p>
-                                </div>
-                            </div>
+        // <div className='text-white py-8'>
+        //     <div className='mySwiper h-[190px] max-w-maxContent'>
+        //         <Swiper
+        //             slidesPerView={1} // Default for smallest screens
+        //             spaceBetween={24}
+        //             loop={true}
+        //             freeMode={true}
+        //             autoplay={{
+        //                 delay: 2500,
+        //                 disableOnInteraction: false,
+        //             }}
+        //             modules={[FreeMode, Pagination, Autoplay]}
+        //             className='w-full'
+        //             breakpoints={{
+        //                 640: { // Screen width >= 640px (sm)
+        //                     slidesPerView: 2,
+        //                 },
+        //                 1024: { // Screen width >= 1024px (lg)
+        //                     slidesPerView: 4,
+        //                 },
+        //             }}
+        //         >
+        //             {reviews.map((review) => (
+        //                 <SwiperSlide key={review._id} className="bg-richblack-800 p-4 rounded-lg flex flex-col gap-3">
+        //                     <div className='flex items-center gap-4'>
+        //                         <img
+        //                             src={review?.user?.image ? review.user.image : `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName} ${review?.user?.lastName}`}
+        //                             alt='Profile pic'
+        //                             className='h-9 w-9 object-cover rounded-full'
+        //                         />
+        //                         <div className='flex flex-col'>
+        //                             {/* FIX: Accessing user's name */}
+        //                             <p className='font-semibold'>{review?.user?.firstName} {review?.user?.lastName}</p>
+        //                             <p className='text-sm text-richblack-300'>{review?.course?.courseName}</p>
+        //                         </div>
+        //                     </div>
                             
-                            {/* FIX: Truncating long reviews */}
-                            <p className='text-sm text-richblack-25'>
-                                {review?.review.split(" ").length > truncateWords
-                                    ? `${review.review.split(" ").slice(0, truncateWords).join(" ")}...`
-                                    : review.review}
-                            </p>
+        //                     {/* FIX: Truncating long reviews */}
+        //                     <p className='text-sm text-richblack-25'>
+        //                         {review?.review.split(" ").length > truncateWords
+        //                             ? `${review.review.split(" ").slice(0, truncateWords).join(" ")}...`
+        //                             : review.review}
+        //                     </p>
 
-                            <div className='flex items-center gap-2'>
-                                <p className='font-semibold text-yellow-50'>{review?.rating?.toFixed(1)}</p>
-                                <ReactStars
-                                    count={5}
-                                    value={review.rating}
-                                    size={20}
-                                    edit={false}
-                                    activeColor="#ffd700"
-                                    emptyIcon={<FaStar />}
-                                    fullIcon={<FaStar />}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+        //                     <div className='flex items-center gap-2'>
+        //                         <p className='font-semibold text-yellow-50'>{review?.rating?.toFixed(1)}</p>
+        //                         <ReactStars
+        //                             count={5}
+        //                             value={review.rating}
+        //                             size={20}
+        //                             edit={false}
+        //                             activeColor="#ffd700"
+        //                             emptyIcon={<FaStar />}
+        //                             fullIcon={<FaStar />}
+        //                         />
+        //                     </div>
+        //                 </SwiperSlide>
+        //             ))}
+        //         </Swiper>
+        //     </div>
+        // </div>
+        <div className="text-white py-8">
+  <div className="mySwiper h-[190px] w-full max-w-[90%] sm:max-w-[80%] md:max-w-[75%] lg:max-w-maxContent mx-auto">
+    <Swiper
+      slidesPerView={1} // default for smallest screens
+      spaceBetween={24}
+      loop={true}
+      freeMode={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      modules={[FreeMode, Pagination, Autoplay]}
+      className="w-full"
+      breakpoints={{
+        640: { // sm
+          slidesPerView: 2,
+        },
+        768: { // md
+          slidesPerView: 3,
+        },
+        1024: { // lg
+          slidesPerView: 4,
+        },
+      }}
+    >
+      {reviews.map((review) => (
+        <SwiperSlide
+          key={review._id}
+          className="bg-richblack-800 p-4 rounded-lg flex flex-col gap-3"
+        >
+          <div className="flex items-center gap-4">
+            <img
+              src={
+                review?.user?.image
+                  ? review.user.image
+                  : `https://api.dicebear.com/5.x/initials/svg?seed=${review?.user?.firstName} ${review?.user?.lastName}`
+              }
+              alt="Profile pic"
+              className="h-9 w-9 object-cover rounded-full"
+            />
+            <div className="flex flex-col">
+              <p className="font-semibold">
+                {review?.user?.firstName} {review?.user?.lastName}
+              </p>
+              <p className="text-sm text-richblack-300">
+                {review?.course?.courseName}
+              </p>
             </div>
-        </div>
+          </div>
+
+          <p className="text-sm text-richblack-25">
+            {review?.review.split(" ").length > truncateWords
+              ? `${review.review
+                  .split(" ")
+                  .slice(0, truncateWords)
+                  .join(" ")}...`
+              : review.review}
+          </p>
+
+          <div className="flex items-center gap-2">
+            <p className="font-semibold text-yellow-50">
+              {review?.rating?.toFixed(1)}
+            </p>
+            <ReactStars
+              count={5}
+              value={review.rating}
+              size={20}
+              edit={false}
+              activeColor="#ffd700"
+              emptyIcon={<FaStar />}
+              fullIcon={<FaStar />}
+            />
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</div>
+
     );
 };
 

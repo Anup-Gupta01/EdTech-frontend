@@ -172,7 +172,7 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="text-center"> Made by Anup&Company ❤️ StudyVerse</div>
+          <div className="text-center"> Made by Anup</div>
         </div>
       </div>
     </div>
